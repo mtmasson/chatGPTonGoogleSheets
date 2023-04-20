@@ -18,7 +18,13 @@ O código atualmente utiliza a versão "gpt-3.5-turbo" do modelo de language gen
 
 ## Utilização
 
+### Pelo Menu
+
 Para utilizar o script, é necessário inserir a chave de acesso para a API do OpenAI na linha correspondente do código. Feito isso, o usuário pode selecionar a opção desejada no menu ChatGPT.
+
+### Por fórmulas
+
+Para utilizar como fórmula basta chamar a função 'chatGPT', passando como parâmetro a solitação.
 
 ## Autores
 
