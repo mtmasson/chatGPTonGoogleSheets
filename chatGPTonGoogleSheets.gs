@@ -6,6 +6,7 @@ function onOpen() {
   ui.createMenu("ChatGPT")
     .addItem("Processar com ChatGPT", "processRangeWithChatGPT")
     .addItem("Atualizar chave da API", "updateOpenAIApiKey")
+    .addItem("Atualizar modelo", "updateOpenAIModel")
     .addToUi();
   
   console.log("Menu criado com sucesso!");
@@ -49,9 +50,9 @@ function updateOpenAIApiKey() {
   
   // Pede ao usuário para inserir a nova chave da API
   const response = ui.prompt(
+    "Atualizar Key",
     "Insira a nova chave da API do OpenAI:",
-    ui.ButtonSet.OK_CANCEL,
-    apiKey
+    ui.ButtonSet.OK_CANCEL
   );
   
   // Atualiza a chave da API se o usuário inserir uma
@@ -62,9 +63,30 @@ function updateOpenAIApiKey() {
   }
 }
 
+function updateOpenAIModel() {
+  const ui = SpreadsheetApp.getUi();
+  const scriptProperties = PropertiesService.getScriptProperties();
+  const model = scriptProperties.getProperty("openAIModel");
+
+  // Pede ao usuário para inserir o novo modelo dentre as opções
+  const response = ui.prompt(
+    "Configure o modelo",
+    "Insira o modelo desejado entre as opções: \n1. gpt-4\n2. gpt-4-0314\n3. gpt-4-32k\n4. gpt-4-32k-0314\n5. gpt-3.5-turbo (Padrão)\n6. gpt-3.5-turbo-0301\n\n",
+    ui.ButtonSet.OK_CANCEL
+  );
+  
+  // Atualiza a chave da API se o usuário inserir uma
+  if (response.getSelectedButton() === ui.Button.OK) {
+    model = response.getResponseText();
+    scriptProperties.setProperty("openAIModel", model);
+    ui.alert("O modelo do chatGPT foi atualizado com sucesso!");
+  }
+}
+
 function chatGPT(prompt) {
   const scriptProperties = PropertiesService.getScriptProperties();
   const apiKey = scriptProperties.getProperty("openAIApiKey"); 
+  const model = scriptProperties.getProperty("openAIModel") || "gpt-3.5-turbo"; 
   const url = 'https://api.openai.com/v1/chat/completions';
   const options = {
     "method": 'post',
@@ -75,7 +97,7 @@ function chatGPT(prompt) {
       'Authorization': 'Bearer ' + apiKey,
     },
     "payload": JSON.stringify({
-      "model": "gpt-3.5-turbo", //gpt-3.5-turbo OU gpt-4 
+      "model": model, //gpt-3.5-turbo OU gpt-4 
       "messages": [{ "role": "user", "content": prompt }]
     }),
   };
