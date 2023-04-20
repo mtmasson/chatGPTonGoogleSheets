@@ -16,10 +16,6 @@ Caso o usuário ainda não tenha indicado sua chave de acesso para a API do Open
 
 O código atualmente utiliza a versão "gpt-3.5-turbo" do modelo de language generation, mas é possível atualizar o código para utilizar o modelo "gpt-4", caso desejado.
 
-### Dall-E
-
-O script também oferece uma função para utilizar o modelo Dall-E do OpenAI para gerar imagens a partir de prompts de texto.
-
 ## Utilização
 
 Para utilizar o script, é necessário inserir a chave de acesso para a API do OpenAI na linha correspondente do código. Feito isso, o usuário pode selecionar a opção desejada no menu ChatGPT.
