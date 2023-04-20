@@ -71,7 +71,7 @@ function updateOpenAIModel() {
   // Pede ao usuário para inserir o novo modelo dentre as opções
   const response = ui.prompt(
     "Configure o modelo",
-    "Insira o modelo desejado entre as opções: \n1. gpt-4\n2. gpt-4-0314\n3. gpt-4-32k\n4. gpt-4-32k-0314\n5. gpt-3.5-turbo (Padrão)\n6. gpt-3.5-turbo-0301\n\n",
+    "Insira o modelo desejado entre as opções:\n\n1. gpt-4\n2. gpt-4-0314\n3. gpt-4-32k\n4. gpt-4-32k-0314\n5. gpt-3.5-turbo (Padrão)\n6. gpt-3.5-turbo-0301\n\n",
     ui.ButtonSet.OK_CANCEL
   );
   
